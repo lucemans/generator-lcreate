@@ -39,6 +39,7 @@ source ~/.bashrc
 sudo mkdir -p /luc/generator-lcreate
 cd /luc/generator-lcreate
 sudo git clone https://github.com/lucemans/generator-lcreate .
+sudo yarn
 sudo yarn link
 
 echo -e ""
