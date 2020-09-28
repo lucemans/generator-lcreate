@@ -100,7 +100,7 @@ module.exports = class extends Generator {
         console.log('\x1b[0m   To compile to sources');
         console.log('\x1b[33m      $ yarn build');
         console.log('\n');
-        console.log('\x1b[5m\x1b[7m ~ Luc')
+        console.log('\x1b[0m\x1b[33m\x1b[7m ~ Luc')
         console.log('\n');
     }
 }
