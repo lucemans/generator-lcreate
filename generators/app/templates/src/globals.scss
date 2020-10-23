@@ -9,3 +9,7 @@ html, body {
 .flex.column {flex-direction: column;}
 .flex.center {justify-content: center;align-items: center;}
 .flex.stretch {justify-content: stretch;align-items: center;}
+
+pre {background-color: #222;color: white;padding: 1em;}
+pre .blue {color: blue;}
+pre .luc {color: #222;background-color:cyan}
