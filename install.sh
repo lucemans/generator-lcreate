@@ -36,6 +36,7 @@ fi
 
 source ~/.bashrc
 
+sudo rm -rf /luc/generator-lcreate
 sudo mkdir -p /luc/generator-lcreate
 cd /luc/generator-lcreate
 sudo git clone https://github.com/lucemans/generator-lcreate .
