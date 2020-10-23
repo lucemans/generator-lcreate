@@ -24,17 +24,17 @@ module.exports = class extends Generator {
                 message: "Your website title",
                 default: this.appname
             },
-            {
-                type: "list",
-                name: "style",
-                message: "What styling would you like to use",
-                default: "scss",
-                store: true,
-                choices: [
-                    "css",
-                    "scss"
-                ]
-            }
+            // {
+            //     type: "list",
+            //     name: "style",
+            //     message: "What styling would you like to use",
+            //     default: "scss",
+            //     store: true,
+            //     choices: [
+            //         "css",
+            //         "scss"
+            //     ]
+            // }
         ])
     }
 
