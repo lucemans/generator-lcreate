@@ -93,7 +93,7 @@ module.exports = class extends Generator {
         );
         this.fs.copy(
             this.templatePath('src/globals.scss'),
-            this.destinationPath('src/globals.'+this.answers.style)
+            this.destinationPath('src/globals.scss')
         );
     }
 
