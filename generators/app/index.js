@@ -21,7 +21,7 @@ module.exports = class extends Generator {
             {
                 type: "input",
                 name: "title",
-                message: "Your project name",
+                message: "Your website title",
                 default: this.appname
             },
             {
@@ -54,7 +54,7 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
             this.templatePath('src/index.html'),
             this.destinationPath('src/index.html'),
-            {title: this.answers.style, css: this.answers.style}
+            {title: this.answers.title, css: this.answers.style}
         );
         this.fs.copyTpl(
             this.templatePath('package.json'),
