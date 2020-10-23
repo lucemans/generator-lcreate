@@ -4,9 +4,9 @@
     "license": "MIT",
     "scripts": {
       "start": "parcel src/index.html",
-      "build": "parcel build src/index.html"<% if (docker) { %>,
+      "build": "parcel build src/index.html",
       "docker": "docker build -t <%= docker %> .",
-      "docker:push": "docker push <%= docker %>"<% } -%>
+      "docker:push": "docker push <%= docker %>"
     }
   }
   

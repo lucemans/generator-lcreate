@@ -24,6 +24,12 @@ module.exports = class extends Generator {
                 message: "Your website title",
                 default: this.appname
             },
+            {
+                type: "input",
+                name: "title",
+                message: "Docker tag",
+                default: this.appname+":latest"
+            },
             // {
             //     type: "list",
             //     name: "style",
@@ -63,7 +69,7 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath('package.json'),
-            {package: this.answers.package, docker: true}
+            {package: this.answers.package, docker: this.answers.dockertag}
         )
         this.fs.copy(
             this.templatePath('src/index.tsx'),
