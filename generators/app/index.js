@@ -57,6 +57,10 @@ module.exports = class extends Generator {
             {title: this.answers.title, css: this.answers.style}
         );
         this.fs.copyTpl(
+            this.templatePath('assets/react_logo.png'),
+            this.destinationPath('assets/react_logo.png')
+        );
+        this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath('package.json'),
             {package: this.answers.package}

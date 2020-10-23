@@ -1,15 +1,21 @@
+/* Global Page Styling */
 html, body {
     width: 100vw;
     height: 100vh;
     padding: 0;
     margin: 0;
+    font-family: sans-serif;
 }
 * {object-fit: contain;box-sizing: border-box;}
+
+/* Preset Class-Based styling for quick access */
 .flex {display:flex;}
 .flex.column {flex-direction: column;}
 .flex.center {justify-content: center;align-items: center;}
 .flex.stretch {justify-content: stretch;align-items: center;}
 
-pre {background-color: #222;color: white;padding: 1em;}
-pre .blue {color: blue;}
-pre .luc {color: #222;background-color:cyan}
+/* Hello World Page Styling */
+pre {margin:0;padding:2em;font-size:1.5em;background-color: #222;color: white;width:100vw;height: 100vh;}
+pre img.react {display: block;width:4rem;margin-bottom:0.5em;}
+pre .blue {color: #51ccff;}
+pre .luc {color: #222;background-color:#51ccff;width:fit-content;}
