@@ -54,7 +54,7 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
             this.templatePath('src/index.html'),
             this.destinationPath('src/index.html'),
-            {title: this.answers.title, css: this.answers.style}
+            {title: this.answers.title}
         );
         this.fs.copyTpl(
             this.templatePath('assets/react_logo.png'),
@@ -63,7 +63,7 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath('package.json'),
-            {package: this.answers.package}
+            {package: this.answers.package, docker: true}
         )
         this.fs.copy(
             this.templatePath('src/index.tsx'),
