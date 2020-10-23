@@ -26,7 +26,7 @@ module.exports = class extends Generator {
             },
             {
                 type: "input",
-                name: "title",
+                name: "dockertag",
                 message: "Docker tag",
                 default: this.appname+":latest"
             },
