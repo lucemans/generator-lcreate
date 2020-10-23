@@ -19,6 +19,12 @@ module.exports = class extends Generator {
                 default: this.appname
             },
             {
+                type: "input",
+                name: "title",
+                message: "Your project name",
+                default: this.appname
+            },
+            {
                 type: "list",
                 name: "style",
                 message: "What styling would you like to use",
@@ -48,7 +54,7 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
             this.templatePath('src/index.html'),
             this.destinationPath('src/index.html'),
-            {title: 'WEBSITE TITLE'}
+            {title: this.answers.style, css: this.answers.style}
         );
         this.fs.copyTpl(
             this.templatePath('package.json'),
@@ -85,7 +91,7 @@ module.exports = class extends Generator {
         if (this.abort) {
             return;
         }
-        this.yarnInstall(['parcel','react','react-dom','@types/react','@types/react-dom']);
+        this.yarnInstall(['parcel','react','react-dom','@types/react','@types/react-dom','@lucemans/logger']);
     }
 
     end() {

@@ -4,3 +4,8 @@ html, body {
     padding: 0;
     margin: 0;
 }
+* {object-fit: contain;box-sizing: border-box;}
+.flex {display:flex;}
+.flex.column {flex-direction: column;}
+.flex.center {justify-content: center;align-items: center;}
+.flex.stretch {justify-content: stretch;align-items: center;}
