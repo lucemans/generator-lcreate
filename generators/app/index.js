@@ -3,7 +3,7 @@ const emoji = require('node-emoji');
 
 module.exports = class extends Generator {
     constructor(args, opts) {
-        super(args,opts);
+        super(args, opts);
     }
 
     initializing() {
@@ -11,41 +11,47 @@ module.exports = class extends Generator {
     }
 
     async prompting() {
-        this.answers = await this.prompt([
+        this.project = await this.prompt([
             {
-                type: "input",
-                name: "package",
-                message: "Your project name",
-                default: this.appname
-            },
-            {
-                type: "input",
-                name: "title",
-                message: "Your website title",
-                default: this.appname
-            },
-            {
-                type: "input",
-                name: "dockertag",
-                message: "Docker tag",
-                default: this.appname+":latest"
-            },
-            // {
-            //     type: "list",
-            //     name: "style",
-            //     message: "What styling would you like to use",
-            //     default: "scss",
-            //     store: true,
-            //     choices: [
-            //         "css",
-            //         "scss"
-            //     ]
-            // }
-        ])
+                type: "list",
+                name: "type",
+                choices: [
+                    { name: "react", value: "react" },
+                    { name: "nodejs", value: "nodejs" }
+                ],
+                default: "react"
+            }
+        ]);
+
+        if (this.project.type == "react") {
+            this.answers = await this.prompt([
+                {
+                    type: "input",
+                    name: "package",
+                    message: "Your project name",
+                    default: this.appname
+                }
+            ]);
+        }
     }
 
     configuring() {
+        if (this.abort) return;
 
+        let copies = [];
+
+        if (this.project.type == "react") {
+            copies = [
+                ['react/.gitignore', '.gitignore'],
+                ['react/tsconfig.json', 'tsconfig.json'],
+                ['react/.eslintrc.json', '.eslintrc.json'],
+                ['react/.eslintignore', '.eslintignore'],
+                ['react/.vscode/settings.json', '.vscode/settings.json'],
+            ];
+        }
+        for (const entry of copies) {
+            this.fs.copyTpl(this.templatePath(entry[0]), this.destinationPath(entry[1]), entry.length > 2 ? entry[2] : {});
+        }
     }
 
     default() {
@@ -53,62 +59,40 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        if (this.abort) {
-            return;
-        }
+        if (this.abort) return;
 
-        this.fs.copyTpl(
-            this.templatePath('src/index.html'),
-            this.destinationPath('src/index.html'),
-            {title: this.answers.title}
-        );
-        this.fs.copyTpl(
-            this.templatePath('assets/react_logo.png'),
-            this.destinationPath('assets/react_logo.png')
-        );
-        this.fs.copyTpl(
-            this.templatePath('package.json'),
-            this.destinationPath('package.json'),
-            {package: this.answers.package, docker: this.answers.dockertag}
-        )
-        this.fs.copy(
-            this.templatePath('src/index.tsx'),
-            this.destinationPath('src/index.tsx')
-        );
-        this.fs.copy(
-            this.templatePath('src/App.tsx'),
-            this.destinationPath('src/App.tsx')
-        );
-        this.fs.copy(
-            this.templatePath('tsconfig.json'),
-            this.destinationPath('tsconfig.json')
-        );
-        this.fs.copy(
-            this.templatePath('types/index.d.ts'),
-            this.destinationPath('types/index.d.ts')
-        );
-        this.fs.copy(
-            this.templatePath('.gitignore'),
-            this.destinationPath('.gitignore')
-        );
-        this.fs.copy(
-            this.templatePath('src/globals.scss'),
-            this.destinationPath('src/globals.scss')
-        );
+        let copies = [];
+
+        if (this.project.type == "react") {
+            copies = [
+                ['react/src/index.html', 'src/index.html', { title: this.answers.package }],
+                ['react/assets/react_logo.png', 'assets/react_logo.png'],
+                ['react/package.json', 'package.json', { package: this.answers.package, docker: this.answers.dockertag }],
+                ['react/src/index.tsx', 'src/index.tsx'],
+                ['react/src/App.tsx', 'src/App.tsx'],
+                ['react/types/index.d.ts', 'types/index.d.ts'],
+                ['react/src/globals.scss', 'src/globals.scss'],
+            ];
+        }
+        for (const entry of copies) {
+            this.fs.copyTpl(this.templatePath(entry[0]), this.destinationPath(entry[1]), entry.length > 2 ? entry[2] : {});
+        }
     }
 
-    install() { 
-        if (this.abort) {
-            return;
+    install() {
+        if (this.abort) return;
+
+        if (this.project.type == "react") {
+            this.yarnInstall(['@types/react', '@types/react-dom', 'typescript', 'eslint', 'eslint-plugin-react', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser'], { 'dev': true })
+            this.yarnInstall(['parcel', 'react', 'react-dom', '@lucemans/logger', 'sass']);
         }
-        this.yarnInstall(['parcel','react','react-dom','@types/react','@types/react-dom','@lucemans/logger']);
     }
 
     end() {
         console.log('\n'.repeat(5));
-        console.log('\x1b[2m' + '-'.repeat(60)+"\x1b[0m");
+        console.log('\x1b[2m' + '-'.repeat(60) + "\x1b[0m");
         console.log('');
-        console.log('\x1b[36mWelcome to your brand new project! '+emoji.get('rocket')+emoji.get('sparkles'));
+        console.log('\x1b[36mWelcome to your brand new project! ' + emoji.get('rocket') + emoji.get('sparkles'));
         console.log('');
         console.log('\x1b[0m   To serve your website');
         console.log('\x1b[33m      $ yarn start');

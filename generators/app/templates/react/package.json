@@ -5,8 +5,8 @@
     "scripts": {
       "start": "parcel src/index.html",
       "build": "parcel build src/index.html",
-      "docker": "docker build -t <%= docker %> .",
-      "docker:push": "docker push <%= docker %>"
+      "lint": "eslint ./src",
+      "lint:fix": "eslint ./src --fix"
     }
   }
   
