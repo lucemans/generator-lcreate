@@ -30,6 +30,12 @@ module.exports = class extends Generator {
                     name: "package",
                     message: "Your project name",
                     default: this.appname
+                },
+                {
+                    type: "input",
+                    name: "docker",
+                    message: "Docker Package",
+                    default: this.appname
                 }
             ]);
         }
@@ -41,6 +47,7 @@ module.exports = class extends Generator {
         let copies = [];
 
         if (this.project.type == "react") {
+            this.answers.package = this.answers.package.replace(/ /g, '');
             copies = [
                 ['react/.gitignore', '.gitignore'],
                 ['react/tsconfig.json', 'tsconfig.json'],
@@ -72,6 +79,7 @@ module.exports = class extends Generator {
                 ['react/src/App.tsx', 'src/App.tsx'],
                 ['react/types/index.d.ts', 'types/index.d.ts'],
                 ['react/src/globals.scss', 'src/globals.scss'],
+                ['react/Dockerfile', 'Dockerfile'],
             ];
         }
         for (const entry of copies) {
@@ -98,7 +106,7 @@ module.exports = class extends Generator {
         console.log('\x1b[33m      $ yarn start');
         console.log('');
         console.log('\x1b[0m   To compile to sources');
-        console.log('\x1b[33m      $ yarn build');
+        console.log('\x1b[33m      $ yarn build:bundle');
         console.log('\n');
         console.log('\x1b[0m\x1b[33m\x1b[7m ~ Luc ')
         console.log('\n');
