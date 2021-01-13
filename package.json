@@ -1,24 +1,22 @@
 {
   "name": "generator-lcreate",
   "version": "1.4.2",
-  "description": "Yeoman generator for Visual Studio Code Extensions",
+  "description": "Yeoman generator for Lucemans Applications",
   "keywords": [
     "yeoman-generator",
-    "vscode",
-    "visual studio",
-    "visual studio code",
-    "vs code",
-    "extensions"
+    "react",
+    "reactjs",
+    "parcel"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/vscode-generator-code.git"
+    "url": "https://github.com/lucemans/generator-lcreate.git"
   },
   "main": "./generators/app/index.js",
   "license": "MIT",
   "author": {
-    "name": "VS Code Team",
-    "url": "https://github.com/Microsoft"
+    "name": "Lucemans",
+    "url": "https://github.com/lucemans"
   },
   "engines": {
     "node": ">=10.0.0"
