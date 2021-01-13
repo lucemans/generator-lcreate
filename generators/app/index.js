@@ -49,7 +49,7 @@ module.exports = class extends Generator {
         if (this.project.type == "react") {
             this.answers.package = this.answers.package.replace(/ /g, '');
             copies = [
-                ['react/.gitignore', '.gitignore'],
+                ['react/gitignore', '.gitignore'],
                 ['react/tsconfig.json', 'tsconfig.json'],
                 ['react/.eslintrc.json', '.eslintrc.json'],
                 ['react/.eslintignore', '.eslintignore'],
