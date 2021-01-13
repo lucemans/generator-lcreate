@@ -27,5 +27,8 @@
   },
   "devDependencies": {
     "@types/yeoman-generator": "^3.1.4"
+  },
+  "scripts": {
+    "build": "np --no-2fa && yarn global add generator-lcreate"
   }
 }
