@@ -1,6 +1,6 @@
 {
   "name": "generator-lcreate",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "Yeoman generator for Lucemans Applications",
   "keywords": [
     "yeoman-generator",
